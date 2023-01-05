@@ -174,16 +174,17 @@ function guardarDatosJson(){
 
 function encolarBootstrapJSCal($hook){
     //echo "<script>console.log('$hook')</script>";
-    if($hook != "gCal-events-wp/admin/config_eventos.php"){
+    if($hook != "google-calendar-events-wp/admin/config_eventos.php"){
         return ;
     }
     wp_enqueue_script('bootstrapJs',plugins_url('admin/bootstrap/js/bootstrap.min.js',__FILE__),array('jquery'));
+	wp_enqueue_script('jsExterno',plugins_url('admin/build/js/lista-eventos.js',__FILE__),array('jquery'));
     wp_enqueue_script('calendario',plugins_url('admin/build/js/eventos.js',__FILE__),array('jquery')); // js propio
 }
 add_action('admin_enqueue_scripts','encolarBootstrapJSCal');
 
 function encolarBootstrapCSSCal($hook){
-    if($hook != "gCal-events-wp/admin/config_eventos.php"){
+    if($hook != "google-calendar-events-wp/admin/config_eventos.php"){
         return ;
     }
     wp_enqueue_style('bootstrapCSS',plugins_url('admin/bootstrap/css/bootstrap.min.css',__FILE__));
@@ -269,16 +270,16 @@ function mostrar_eventos($atts) {
  '</div>' .
  '<hr size="1px" color="LightSlateGray" />' .
  '<div class="gcf-last-update-block">' .
-   'Ultima actualización: <span class="gcf-last-update"></span>' .
+   'Ultima actualizacion: <span class="gcf-last-update"></span>' .
  '</div>' .
 '</div>' .
 '<br>'
+// . '<div id="elemen"></div>'
 ;
 
     return $texto;
 }
 add_shortcode('eventos', 'mostrar_eventos');
-
 
 ?>
 
@@ -299,6 +300,9 @@ if (empty($listaFonConf)) {
   $listaFonConf = array();
 }
 ?>
+
+<!-- <link rel="stylesheet" href="<?php plugin_dir_url( __FILE__ ) . 'build/css/app.css'; ?>"> -->
+<link rel="stylesheet" href="<?php plugins_url('build/css/app.css',__FILE__); ?>">
 
 <style>
 .gCalFlow .gcf-header-block .gcf-title-block .gcf-title {
@@ -396,28 +400,12 @@ $listaFonConfCal = $wpdb->get_results($queryFondoCal, ARRAY_A);
 if (empty($listaFonConfCal)) {
   $listaFonConfCal = array();
 }
-
-$fondoConf = "{$wpdb->prefix}evento_fondo_conf";
-
-$queryFondo = "SELECT * FROM $fondoConf";
-$listaFonConf = $wpdb->get_results($queryFondo, ARRAY_A);
-if (empty($listaFonConf)) {
-  $listaFonConf = array();
-}
-
 ?>
 <script>
 	let id_cal = "<?php echo $listaFonConfCal[0]['id_cal']; ?>";
 	let api_key = "<?php echo $listaFonConfCal[0]['api_key']; ?>";
 </script>
-<script>
-    const bgTxtColor = document.querySelector('.wp-block-post-content');
-	bgTxtColor.classList.add('nueva-clase');
-	//bgTxtColor.classList.remove('has-contrast-background-color');
-    bgTxtColor.style.backgroundColor = "<?php echo $listaFonConf[0]['color_fondo']; ?>"; // También se puede utilizar .text
-    console.log(bgTxtColor);
-</script>
+<script src="/wordpress/wp-content/plugins/google-calendar-events-wp/admin/build/js/eventos.js"></script>
 <?php
-} ,2);
+} ,1);
 ?>
-
