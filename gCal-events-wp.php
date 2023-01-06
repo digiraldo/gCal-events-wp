@@ -35,8 +35,8 @@ function activarCal(){
 
 	$sqlFondoConf ="CREATE TABLE IF NOT EXISTS {$wpdb->prefix}evento_fondo_conf(
 		`id_fondo` INT NOT NULL,
-		`api_key` VARCHAR(80) NOT NULL,
-		`id_cal` VARCHAR(80) NOT NULL,
+		`api_key` VARCHAR(200) NOT NULL,
+		`id_cal` VARCHAR(200) NOT NULL,
 		`color_fondo` VARCHAR(10) NOT NULL,
 		`color_bag_fec` VARCHAR(10) NOT NULL,
 		`color_por_fec` VARCHAR(10) NOT NULL,
@@ -66,7 +66,7 @@ function activarCal(){
 		`cal_fecha` VARCHAR(60) NOT NULL,
 		`title_desc` VARCHAR(60) NOT NULL,
 		`desc_evento` VARCHAR(400) NOT NULL,
-		`title_location` VARCHAR(200) NOT NULL,
+		`title_location` VARCHAR(300) NOT NULL,
 		`text_url` VARCHAR(60) NOT NULL,
 		`text_btn` VARCHAR(45) NOT NULL,
 		PRIMARY KEY (`id_texto`)
@@ -102,18 +102,15 @@ function activarCal(){
 }
 
 function desactivarCal(){
-	global $wpdb;
-
-	$sqlBorrarTablas = "DROP TABLE `wp_evento_fondo_conf`, `wp_evento_switch_texto`, `wp_evento_texto_pred`";
-
-	$wpdb->query($sqlBorrarTablas);
+	
 }
 
-function borrar(){}
 
 register_activation_hook(__FILE__,'activarCal');
 register_deactivation_hook(__FILE__,'desactivarCal');
-register_uninstall_hook( __FILE__, 'borrar');
+
+// function borrar(){}
+// register_uninstall_hook( __FILE__, 'borrar');
 
 add_action( 'admin_menu','crearMenuCal');
 
@@ -245,9 +242,9 @@ function mostrar_eventos($atts) {
 	 '<div class="gcf-item-header-block">' .
 	   '<div class="gcf-item-date-block">' .
 		 '<span class="gcf-item-daterange">' .
-		   '<h2 class="no-margin"><span></span></h2>' .
+		   '<h2 class="gcf-no-margin"><span></span></h2>' .
 		   '<br>' .
-		   '<h3 class="no-margin">' . $a['cal_fecha'] . '<br><span></span></h3>' .
+		   '<h3 class="gcf-no-margin">' . $a['cal_fecha'] . '<br><span></span></h3>' .
 		 '</span>' .
 	   '</div>' .
 	 '</div>' .
@@ -282,8 +279,10 @@ add_shortcode('eventos', 'mostrar_eventos');
 
 ?>
 
-<!-- ========================Insertar CSS del Calendario de Google en las paginas======================== -->
-<!-- ========================Insertar CSS del Calendario de Google en las paginas======================== -->
+<?php 
+// ========================Insertar CSS del Calendario de Google en las paginas========================
+// ========================Insertar CSS del Calendario de Google en las paginas========================
+?>
 
 <?php 
 add_action('wp_head', function(){

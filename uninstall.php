@@ -1,5 +1,17 @@
 <?php
 
-if(!define('WP_UNINSTALL_PLUGIN')){
-    die();
+  // if uninstall.php is not called by WordPress, die
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+    die;
 }
+
+//$option_name = 'wporg_option';
+
+//delete_option( $option_name );
+
+  // for site options in Multisite
+//delete_site_option( $option_name );
+
+  // drop a custom database table
+global $wpdb;
+$wpdb->query( "DROP TABLE IF EXISTS `{$wpdb->prefix}evento_fondo_conf`, `{$wpdb->prefix}evento_switch_texto`, `{$wpdb->prefix}evento_texto_pred`" );

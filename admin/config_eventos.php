@@ -495,9 +495,9 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
                 <div class="gcf-item-header-block">
                   <div class="gcf-item-date-block">
                     <span class="gcf-item-daterange">
-                      <h2 class="no-margin"><span></span></h2>
+                      <h2 class="gcf-no-margin"><span></span></h2>
                       <br>
-                      <h3 class="no-margin"><?php echo $listaTextPred[0]['cal_fecha']; ?><br><span></span></h3>
+                      <h3 class="gcf-no-margin"><?php echo $listaTextPred[0]['cal_fecha']; ?><br><span></span></h3>
                     </span>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ let espXlinea = ".replace(' ', '-')";
 
 let gCalUrl = `https://www.googleapis.com/calendar/v3/calendars/${id_cal}/events?key=${api_key}&maxResults=${maxitem}&orderBy=startTime&timeMin=${now}&singleEvents=true`;
 let gCalUrlTitle = `http://www.google.com/calendar/embed?src=${id_cal}`
-//console.log(gCalUrl);
+console.log(`Datos del gCal: ${gCalUrl}`);
 //console.log(gCalUrlTitle);
 
 let container = document.querySelector(".gcf-item-container-block");
@@ -36,8 +36,13 @@ function mostrarEventos(datos) {
     const calDes = datos.description;
     const actualizado = datos.updated;
     const item = datos.items;
+    //console.log(item);
 
-    let opciones = { year: 'numeric', month: 'short', day: 'numeric' };
+    if (!item || item == '') {
+        console.log('No hay Calendario que Mostrar');
+    } else {
+        console.log('Si Hay Calendario que Mostrar');
+        let opciones = { year: 'numeric', month: 'short', day: 'numeric' };
     let fecha = new Date(actualizado)
     .toLocaleDateString('es-MX',opciones)
     .replace(/ /g,'-')
@@ -48,7 +53,7 @@ function mostrarEventos(datos) {
     container.innerHTML = '';
 
     navegacionTitulo.innerHTML = `
-    <a href="${gCalUrlTitle}">${calendario}</a>
+    <a href="${gCalUrlTitle}" target="_blank" rel="noopener noreferrer">${calendario}</a>
     `;
 
     
@@ -101,7 +106,7 @@ function mostrarEventos(datos) {
             hrefMap = `<a href="${ubicacion}" target="_blank" rel="noopener noreferrer">Ubicación</a>`
         }
 
-        console.log(ubicacion);
+        //console.log(ubicacion);
 
         // ---------------Quitar espacios mayúsculas y caracteres para url---------------
         const texto = valor.summary;
@@ -138,16 +143,16 @@ function mostrarEventos(datos) {
             <div class="gcf-item-header-block">
               <div class="gcf-item-date-block">
                 <span class="gcf-item-daterange">
-                <h2 class="no-margin">${starDateDia}<br><span>${starDateMes}</span></h2>
+                <h2 class="gcf-no-margin">${starDateDia}<br><span>${starDateMes}</span></h2>
                 <br>
-                <h3 class="no-margin">${endDateDia}<br><span>${endDateMes}</span></h3>
+                <h3 class="gcf-no-margin">${endDateDia}<br><span>${endDateMes}</span></h3>
                 </span>
               </div>
             </div>
             <div class="gcf-item-body-block">
               <div class="gcf-item-title-block">
                 <strong class="gcf-item-title">
-                    <a target="_blank" href="${valor.htmlLink}">${valor.summary}</a>
+                    <a target="_blank" rel="noopener noreferrer" href="${valor.htmlLink}">${valor.summary}</a>
                 </strong>
               </div>
               <div class="gcf-item-description">
@@ -162,9 +167,13 @@ function mostrarEventos(datos) {
             </div>
           </div>
         `;
+        
     }
 
     const textoActualizado = document.querySelector('.gcf-last-update');
     textoActualizado.textContent = fecha;
+    }
+
+    
 }
 buscarEventos();

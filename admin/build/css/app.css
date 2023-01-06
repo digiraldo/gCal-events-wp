@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 .toggle {
     cursor: pointer;
     display: inline-block;
@@ -171,29 +173,34 @@ hr {
     /* color: #fff; */
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange .no-margin {
+.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange .gcf-no-margin {
     margin: 0 10px
 }
 
 .gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h2 {
     font-size: 31px;
+    font-family: 'Roboto Condensed', sans-serif;
     line-height: .7;
-    text-align: center
+    text-align: center;
+    font-weight: 400
 }
 
 .gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h2 span {
     font-size: 27px;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400
 }
 
 .gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h3 {
     font-size: 21px;
+    font-family: 'Roboto Condensed', sans-serif;
     line-height: .8;
     text-align: center
 }
 
 .gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h3 span {
     font-size: 18px;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400
 }
 
