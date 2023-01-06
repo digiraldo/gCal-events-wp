@@ -301,6 +301,10 @@ if (empty($listaFonConf)) {
 ?>
 
 <style>
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+
 .gCalFlow .gcf-header-block .gcf-title-block .gcf-title {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
@@ -310,7 +314,7 @@ if (empty($listaFonConf)) {
 }
 
 .gCalFlow .gcf-header-block .gcf-title-block .gcf-title a:hover {
-    color: <?php echo $listaFonConf[0]['color_txt_des']; ?>;
+    color: <?php echo $listaFonConf[0]['color_fondo']; ?>;
 }
 
 .gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block {
@@ -411,11 +415,12 @@ if (empty($listaFonConf)) {
 	let api_key = "<?php echo $listaFonConfCal[0]['api_key']; ?>";
 </script>
 <script>
-    const bgTxtColor = document.querySelector('.wp-block-post-content');
-	bgTxtColor.classList.add('nueva-clase');
+    const bgTxtColor = document.querySelector('.gCalFlow').parentNode;
+    //const bgTxtColor = document.querySelector('.wp-block-post-content');
+	bgTxtColor.classList.add('color-fondo');
 	//bgTxtColor.classList.remove('has-contrast-background-color');
     bgTxtColor.style.backgroundColor = "<?php echo $listaFonConf[0]['color_fondo']; ?>"; // También se puede utilizar .text
-    console.log(bgTxtColor);
+    //console.log(bgTxtColor);
 </script>
 <?php
 } ,2);

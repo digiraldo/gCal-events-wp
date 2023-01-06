@@ -1,13 +1,19 @@
-// let id_cal = "35b2qba53usalutistin2t916o@group.calendar.google.com";
-// let api_key = "AIzaSyB4x70PYpmslKqPy_fvvoMMTKADc9UdifE";
+//let id_cal = "35b2qba53usalutistin2t916o@group.calendar.google.com";
+//let api_key = "AIzaSyB4x70PYpmslKqPy_fvvoMMTKADc9UdifE";
 let maxitem = 4;
 let now = new Date().toJSON();
-let actual = new Date();  
+let actual = new Date();
+let espXmas = ".replace(' ', '+')";
+let espXnada = ".replace(' ', '')";
+let espXlinea = ".replace(' ', '-')";
 
 let gCalUrl = `https://www.googleapis.com/calendar/v3/calendars/${id_cal}/events?key=${api_key}&maxResults=${maxitem}&orderBy=startTime&timeMin=${now}&singleEvents=true`;
+let gCalUrlTitle = `http://www.google.com/calendar/embed?src=${id_cal}`
 //console.log(gCalUrl);
+//console.log(gCalUrlTitle);
 
 let container = document.querySelector(".gcf-item-container-block");
+let navegacionTitulo = document.querySelector('.gcf-title');
 
 function buscarEventos() {
     fetch(gCalUrl)
@@ -38,11 +44,14 @@ function mostrarEventos(datos) {
     .replace('.','')
     .replace(/-([a-z])/, function (x) {return '-' + x[1].toUpperCase()});
 
-    const textoCalendario = document.querySelector('.gcf-title');
-    textoCalendario.textContent = calendario;
-
+    navegacionTitulo.innerHTML = '';
     container.innerHTML = '';
 
+    navegacionTitulo.innerHTML = `
+    <a href="${gCalUrlTitle}">${calendario}</a>
+    `;
+
+    
     for (let valor of item) {
 
         const mesName = {month: 'short'};
@@ -63,6 +72,10 @@ function mostrarEventos(datos) {
         const finDia = finDate.toLocaleDateString('es-MX',diaName);
         const finMes2 = finDate.toLocaleDateString('es-MX',mesName);
         const finMes = finMes2[0].toUpperCase() + finMes2.substring(1);
+        let ubicacion = valor.location;
+
+        //console.log(gmapsLink);
+        //console.log(mapsUrl);
 
         if (valor.start.dateTime !== undefined) {
             starDateDia = iniDiaTime;
@@ -79,6 +92,16 @@ function mostrarEventos(datos) {
             endDateDia = finDia;
             endDateMes = finMes;
         }
+
+        if (ubicacion == undefined) {
+            ubicacion = '';
+            hrefMap = ''
+        } else {
+            ubicacion = `https://maps.google.com/maps?hl=es-419&q=${valor.location}`;
+            hrefMap = `<a href="${ubicacion}" target="_blank" rel="noopener noreferrer">Ubicación</a>`
+        }
+
+        console.log(ubicacion);
 
         // ---------------Quitar espacios mayúsculas y caracteres para url---------------
         const texto = valor.summary;
@@ -123,13 +146,15 @@ function mostrarEventos(datos) {
             </div>
             <div class="gcf-item-body-block">
               <div class="gcf-item-title-block">
-                <strong class="gcf-item-title">${valor.summary}</strong>
+                <strong class="gcf-item-title">
+                    <a target="_blank" href="${valor.htmlLink}">${valor.summary}</a>
+                </strong>
               </div>
               <div class="gcf-item-description">
                 ${valor.description}
               </div>
               <div class="gcf-item-location">
-                ${valor.location}
+                ${hrefMap}
               </div>
             </div>
             <div class="btn-calendario">
@@ -143,4 +168,3 @@ function mostrarEventos(datos) {
     textoActualizado.textContent = fecha;
 }
 buscarEventos();
-

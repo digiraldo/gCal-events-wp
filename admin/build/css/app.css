@@ -94,7 +94,8 @@ hr {
 .gCalFlow .gcf-header-block .gcf-title-block .gcf-title a:hover {
     /* color: #fff; */
     cursor: pointer;
-    font-weight: 900
+    font-weight: 900;
+    filter: invert(100%);
 }
 
 .gCalFlow .gcf-item-container-block {
