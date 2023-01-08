@@ -442,10 +442,6 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
                       <input type="color" class="form-control form-control-color" id="color_fon_btn" name="color_fon_btn" value="<?php echo $listaFonConf[0]['color_fon_btn']; ?>" title="color fondo del boton" style="margin-left: 5px;" />
                       <input type="color" class="form-control form-control-color" id="color_tex_btn" name="color_tex_btn" value="<?php echo $listaFonConf[0]['color_tex_btn']; ?>" title="color texto del boton" style="margin-left: 5px;" />
                     </div>
-                   <!--  <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"  <?php echo $listaSwText[0]['switch']; ?>/>
-                      <label class="form-check-label" for="flexSwitchCheckChecked"><?php echo $listaSwText[0]['estado']; ?></label>
-                    </div> -->
                   </div>
                 </div>
               </div>
