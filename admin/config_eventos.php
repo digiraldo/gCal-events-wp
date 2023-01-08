@@ -116,7 +116,7 @@ if (isset($_POST['btnGuardarSw'])) {
   $querySwTex = "SELECT * FROM $switchTxt ORDER BY id_texto ASC";
   $resultadoSw = $wpdb->get_results($querySwTex, ARRAY_A);
   if ($dato == 'on') {
-    $calId = 'gcf-custom-template';
+    $calId = 'gcd-custom-template';
     $Switch = 'checked';
     $estado = 'Activado';
     $estatus = 'on';
@@ -245,71 +245,71 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
   <title>Eventos</title>
   <script src="https://kit.fontawesome.com/2a290a3f5e.js" crossorigin="anonymous"></script>
   <style>
-.gCalFlow .gcf-header-block .gcf-title-block .gcf-title {
+.gCalDi .gcd-header-block .gcd-title-block .gcd-title {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
 
-.gCalFlow .gcf-header-block .gcf-title-block .gcf-title a {
+.gCalDi .gcd-header-block .gcd-title-block .gcd-title a {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
 
-.gCalFlow .gcf-header-block .gcf-title-block .gcf-title a:hover {
+.gCalDi .gcd-header-block .gcd-title-block .gcd-title a:hover {
     color: <?php echo $listaFonConf[0]['color_txt_des']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-header-block {
     background-color: <?php echo $listaFonConf[0]['color_bag_fec'] ,$listaFonConf[0]['color_por_fec']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h2,
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h3,
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-header-block .gcf-item-date-block .gcf-item-daterange h4 {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-header-block .gcd-item-date-block .gcd-item-daterange h2,
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-header-block .gcd-item-date-block .gcd-item-daterange h3,
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-header-block .gcd-item-date-block .gcd-item-daterange h4 {
     color: <?php echo $listaFonConf[0]['color_txt_fec']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-body-block {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-body-block {
     background-color: <?php echo $listaFonConf[0]['color_bag_des'] ,$listaFonConf[0]['color_por_des']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-body-block .gcf-item-title-block .gcf-item-title {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-body-block .gcd-item-title-block .gcd-item-title {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-body-block .gcf-item-title-block .gcf-item-title a {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-body-block .gcd-item-title-block .gcd-item-title a {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-body-block .gcf-item-title-block .gcf-item-title a:hover {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-body-block .gcd-item-title-block .gcd-item-title a:hover {
     color: <?php echo $listaFonConf[0]['color_txt_fec']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-body-block .gcf-item-description {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-body-block .gcd-item-description {
     color: <?php echo $listaFonConf[0]['color_txt_des']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .gcf-item-body-block .gcf-item-location {
+.gCalDi .gcd-item-container-block .gcd-item-block .gcd-item-body-block .gcd-item-location {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .btn-calendario {
+.gCalDi .gcd-item-container-block .gcd-item-block .btn-calendario {
     background-color: <?php echo $listaFonConf[0]['color_bag_bot'] ,$listaFonConf[0]['color_por_bot']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .btn-calendario .boton-roja {
+.gCalDi .gcd-item-container-block .gcd-item-block .btn-calendario .boton-roja {
     background-color: <?php echo $listaFonConf[0]['color_fon_btn']; ?>;
     color: <?php echo $listaFonConf[0]['color_tex_btn']; ?>;
 }
 
-.gCalFlow .gcf-item-container-block .gcf-item-block .btn-calendario .boton-roja:hover {
+.gCalDi .gcd-item-container-block .gcd-item-block .btn-calendario .boton-roja:hover {
     background-color: <?php echo $listaFonConf[0]['color_tex_btn']; ?>;
     color: <?php echo $listaFonConf[0]['color_fon_btn']; ?>;
 }
 
-.gCalFlow .gcf-last-update-block {
+.gCalDi .gcd-last-update-block {
     color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>;
 }
 
-.gCalFlow .gcf-last-update-block .gcf-last-update {
+.gCalDi .gcd-last-update-block .gcd-last-update {
     color: <?php echo $listaFonConf[0]['color_txt_des']; ?>;
 }
 
@@ -358,17 +358,19 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
         <input type="hidden" required name="id_fondo" value="<?php echo $listaFonConf[0]['id_fondo']; ?>" placeholder="" id="id_fondo" requiere="">
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">Api-Key</span>
-          <input type="text" class="form-control" id="api_key" name="api_key" value="<?php echo $listaFonConf[0]['api_key']; ?>" placeholder="Introduzca la Api-Key de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-          <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-        </div>
-
-        <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">Id Calendario</span>
           <input type="text" class="form-control" id="id_cal" name="id_cal" value="<?php echo $listaFonConf[0]['id_cal']; ?>" placeholder="Introduzca Id del Calendario de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
           <span class="input-group-text"><i class="fa-solid fa-calendar-check"></i></span>
         </div>
         <br>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Api-Key</span>
+          <input type="text" class="form-control" id="api_key" name="api_key" value="<?php echo $listaFonConf[0]['api_key']; ?>" placeholder="Introduzca la Api-Key de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+        </div>
+
+
 
         <div class="container text-center rounded" style="width: 100%; background-color: <?php echo $listaFonConf[0]['color_fondo'] ?>;">
           <div class="card-header">
@@ -483,32 +485,32 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
         <br>
         <h5 class="card-title rounded" style=" background-color: <?php echo $listaFonConf[0]['color_fondo'] ?>;">
 
-          <div class="gCalFlow" id="<?php echo $listaSwText[0]['cal_id']; ?>">
-            <div class="gcf-header-block">
-              <div class="gcf-title-block">
-                <span class="gcf-title"><?php echo $listaTextPred[0]['cal_title']; ?></span>
+          <div class="gCalDi" id="<?php echo $listaSwText[0]['cal_id']; ?>">
+            <div class="gcd-header-block">
+              <div class="gcd-title-block">
+                <span class="gcd-title"><?php echo $listaTextPred[0]['cal_title']; ?></span>
               </div>
             </div>
             <hr size="1px" color="LightSlateGray" />
-            <div class="gcf-item-container-block">
-              <div class="gcf-item-block">
-                <div class="gcf-item-header-block">
-                  <div class="gcf-item-date-block">
-                    <span class="gcf-item-daterange">
-                      <h2 class="gcf-no-margin"><span></span></h2>
+            <div class="gcd-item-container-block">
+              <div class="gcd-item-block">
+                <div class="gcd-item-header-block">
+                  <div class="gcd-item-date-block">
+                    <span class="gcd-item-daterange">
+                      <h2 class="gcd-no-margin"><span></span></h2>
                       <br>
-                      <h3 class="gcf-no-margin"><?php echo $listaTextPred[0]['cal_fecha']; ?><br><span></span></h3>
+                      <h3 class="gcd-no-margin"><?php echo $listaTextPred[0]['cal_fecha']; ?><br><span></span></h3>
                     </span>
                   </div>
                 </div>
-                <div class="gcf-item-body-block">
-                  <div class="gcf-item-title-block">
-                    <strong class="gcf-item-title"><?php echo $listaTextPred[0]['title_desc']; ?></strong>
+                <div class="gcd-item-body-block">
+                  <div class="gcd-item-title-block">
+                    <strong class="gcd-item-title"><?php echo $listaTextPred[0]['title_desc']; ?></strong>
                   </div>
-                  <div class="gcf-item-description">
+                  <div class="gcd-item-description">
                     <?php echo $listaTextPred[0]['desc_evento']; ?>
                   </div>
-                  <div class="gcf-item-location">
+                  <div class="gcd-item-location">
                     <?php echo $listaTextPred[0]['title_location']; ?>
                   </div>
                 </div>
@@ -518,10 +520,10 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
               </div>
             </div>
             <hr size="1px" color="LightSlateGray" />
-            <div class="gcf-last-update-block">
-              Ultima actualización: <span class="gcf-last-update"></span>
+            <div class="gcd-last-update-block">
+              Ultima actualización: <span class="gcd-last-update"></span>
             </div>
-          </div> <!-- gCalFlow -->
+          </div> <!-- gCalDi -->
 
       </div>
       <div class="card-footer text-muted">
@@ -591,7 +593,7 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
 <script>
     let id_cal = "<?php echo $listaFonConf[0]['id_cal']; ?>";
     let api_key = "<?php echo $listaFonConf[0]['api_key']; ?>";
-    console.log(Si me veeeeeeeee);
+    console.log('Si me veeeeeeeee');
 </script>
 
 

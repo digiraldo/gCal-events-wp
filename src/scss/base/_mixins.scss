@@ -1,0 +1,124 @@
+/** Media Queries **/
+@use 'base/variables' as v;
+
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin desktopXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+
+@mixin grid($columnas: 1, $filas: 1, $espaciado: 1rem, $autorows: auto) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    grid-template-rows: repeat($filas, 1fr);
+    gap: $espaciado;  // para muchas columnas es mejor utilizar gap y no column-gap.
+    grid-auto-rows: $autorows;
+}
+
+@mixin resetear-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin boto($bg-color, $tx-color, $tx-size: 2rem) {
+    background-color: $bg-color;
+    color: $tx-color;
+    padding: 1rem 3rem;
+    //margin-top: 2rem;
+    font-size: $tx-size;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+    border-radius: .5rem;
+    //width: 90%;
+    text-align: center;
+    border: none;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        padding: 1rem 4rem;
+        background-color: $tx-color;
+        opacity: 0.7;
+        color: $bg-color;
+        border: 1px solid v.$perla;
+    } 
+}
+
+@mixin boton($bgColor, $display) {
+    background-color: $bgColor;
+    color: v.$blanco;
+    font-weight: v.$bold;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-align: center;
+    margin-top: v.$separacion / 2;
+    display: $display;
+    border: none;
+
+    &:hover {
+        background-color: darken($bgColor, 5);
+        cursor: pointer;
+    }
+}
+
+@mixin brillar {
+    .brillar {
+        picture {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+    
+            &:hover+span {
+                bottom: -36px;
+                opacity: 1;
+            }
+            &:hover::before {
+                -webkit-animation: shine .75s;
+                animation: shine .75s;
+            }
+        }
+    
+        picture::before {
+        position: absolute;
+        top: 0;
+        left: -75%;
+        z-index: 2;
+        display: block;
+        content: '';
+        width: 50%;
+        height: 100%;
+        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+        -webkit-transform: skewX(-25deg);
+        transform: skewX(-25deg);
+        }
+    
+    }
+    @-webkit-keyframes shine {
+        100% {
+            left: 125%;
+        }
+    }
+    @keyframes shine {
+        100% {
+            left: 125%;
+        }
+    }
+}

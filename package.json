@@ -1,0 +1,23 @@
+{
+  "name": "gcal-events-wp",
+  "version": "1.0.0",
+  "description": "Eventos de Calendario de Google para tu Web, Muestra el calendario de Google como eventos dentro de una seccion de tu pagina web.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digiraldo/gCal-events-wp.git"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp"
+  ],
+  "author": "digiraldo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/digiraldo/gCal-events-wp/issues"
+  },
+  "homepage": "https://github.com/digiraldo/gCal-events-wp#readme"
+}

@@ -1,0 +1,53 @@
+// @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+// Fuentes
+$fuente_principal: 'Montserrat', sans-serif; // CEM
+$fuente_secundaria: 'Lato', sans-serif;
+$fuente_calendario: 'Roboto Condensed', sans-serif;
+
+// Tamaño de Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$desktopXL: 1200px;
+
+// Colores
+$negro: #000000;
+$blanco: #FFFFFF;
+$gris: #808080;
+$grisClaro: #e1e1e1;
+$grisOscuro: #333333;
+
+$amarillo: #E08709;
+$amarilloClaro: #FEF46D;
+
+$azul: #135796;
+
+$verdeAzul: #4CB8B3;
+$verde: green;
+$verdeClaro: #71B100;
+
+$rosa: #F53756;
+$morado: #752F97;
+
+// Paleta CEM
+$noche: #000B29;
+$roja: #d70026;
+$perla: #F8F5F2;
+$destello: #EDB83D;
+
+$separacion: 5rem;
+
+// Fuentes
+$delgada: 300;
+$regular : 400;
+$bold: 700;
+$black: 900
+
+// Oscurecer un color, odd es para seleccionar los impares de la lista
+// li:nth-child(odd) {
+//     background-color: darken($amarillo, 10%);
+// }
