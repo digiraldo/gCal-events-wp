@@ -1,0 +1,19 @@
+[
+    {
+        "id_fondo": "0",
+        "api_key": "AIzaSyB4x70PYpmslKqPy_fvvoMMTKADc9UdifE",
+        "id_cal": "414647ff73d6d716fd77a0d57572624f71efb32d6c17c28af469ecd6eae4a2e5@group.calendar.google.com",
+        "color_fondo": "#151719",
+        "color_bag_fec": "#3b3b3b",
+        "color_por_fec": "",
+        "color_txt_fec": "#808080",
+        "color_bag_des": "#364454",
+        "color_por_des": "",
+        "color_txt_tit": "#708090",
+        "color_txt_des": "#d3d3d3",
+        "color_bag_bot": "#365444",
+        "color_por_bot": "",
+        "color_fon_btn": "#d70026",
+        "color_tex_btn": "#ffffff"
+    }
+]

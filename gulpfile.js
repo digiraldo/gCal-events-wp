@@ -34,6 +34,7 @@ function imagenes(done) {
         optimizationLevel: 3
     };
     src('src/img/**/*.{png,jpg}')
+        .pipe(plumber()) // Muestra mensaje de error mas corto sin detener la ejecución
         .pipe(cache(imagemin(opciones)))
         .pipe(dest('admin/build/img'))
     done();  // Para que le avise que ya termino todo mi procesamiento
@@ -44,6 +45,7 @@ function versionWebp(done) {
         quality: 50
     };
     src('src/img/**/*.{png,jpg}')
+        .pipe(plumber()) // Muestra mensaje de error mas corto sin detener la ejecución
         .pipe(webp(opciones))
         .pipe(dest('admin/build/img'))
     done();
@@ -54,6 +56,7 @@ function versionAvif(done) {
         quality: 50
     };
     src('src/img/**/*.{png,jpg}')
+        .pipe(plumber()) // Muestra mensaje de error mas corto sin detener la ejecución
         .pipe(avif(opciones))
         .pipe(dest('admin/build/img'))
     done();
@@ -62,6 +65,7 @@ function versionAvif(done) {
 function javascript(done) {
      src('src/js/**/*.js')
          .pipe(sourcemaps.init())
+         .pipe(plumber()) // Muestra mensaje de error mas corto sin detener la ejecución
          .pipe(terser())
          .pipe(sourcemaps.write('.'))
          .pipe(dest('admin/build/js'))
@@ -76,9 +80,9 @@ function dev(done) {
 }
 
 exports.css = css;
-//exports.js = javascript;
+exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-//exports.devs = parallel(versionAvif, imagenes, versionWebp, javascript, dev);
-exports.dev = parallel(versionAvif, imagenes, versionWebp, dev);
+exports.devs = parallel(versionAvif, imagenes, versionWebp, javascript, dev);
+//exports.dev = parallel(versionAvif, imagenes, versionWebp, dev);

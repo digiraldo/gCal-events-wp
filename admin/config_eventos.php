@@ -1,10 +1,13 @@
 <?php
+// Include
+//include("build/api/config.php");
+//include("build/api/apikey.php");
+
 global $wpdb;
 
 $fondoConf = "{$wpdb->prefix}evento_fondo_conf";
 $textoPred = "{$wpdb->prefix}evento_texto_pred";
 $switchTxt = "{$wpdb->prefix}evento_switch_texto";
-
 
 $idFondo = (isset($_POST['id_fondo'])) ? $_POST['id_fondo'] : "";
 $apiKey = (isset($_POST['api_key'])) ? $_POST['api_key'] : "";
@@ -151,6 +154,40 @@ if (isset($_POST['btnGuardarSw'])) {
     $typeBtn
   );
   $wpdb->query($datosSwit);
+
+  global $wpdb;
+	$fondoConfCal = "{$wpdb->prefix}evento_fondo_conf";
+	$textoPredCal = "{$wpdb->prefix}evento_texto_pred";
+	$switchTxtCal = "{$wpdb->prefix}evento_switch_texto";
+
+	$queryFondoCal = "SELECT * FROM $fondoConfCal";
+	$listaFonConfCal = $wpdb->get_results($queryFondoCal, ARRAY_A);
+	if (empty($listaFonConfCal)) {
+	$listaFonConfCal = array();
+	}
+	/*  */
+	$fConfig = json_encode($listaFonConfCal, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); //
+	file_put_contents(__DIR__.'/build/json/fondo_config.json', $fConfig);
+
+
+	$queryTextCal = "SELECT * FROM $textoPredCal";
+	$listaTextPredCal = $wpdb->get_results($queryTextCal, ARRAY_A);
+	if (empty($listaTextPredCal)) {
+	$listaTextPredCal = array();
+	}
+	/*  */
+	$tConfig = json_encode($listaTextPredCal, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); //
+	file_put_contents(__DIR__.'/build/json/texto_config.json', $tConfig);
+
+
+	$querySwCal = "SELECT * FROM $switchTxtCal";
+	$listaSwTextCal = $wpdb->get_results($querySwCal, ARRAY_A);
+	if (empty($listaSwTextCal)) {
+	$listaSwTextCal = array();
+	}
+	/*  */
+	$sConfig = json_encode($listaSwTextCal, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); //
+	file_put_contents(__DIR__.'/build/json/switch_config.json', $sConfig);
 }
 /*
 echo '<pre>'; print_r($datosSwit); echo '</pre>';
@@ -332,7 +369,7 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
     <div class="card-header">
       <i class="fa-solid fa-gear"></i> Configuración
     </div>
-    <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+    <form class="row g-3 formulario" action="" method="post" enctype="multipart/form-data">
       <div class="card-body">
         <h5 class="card-title"><?php echo get_admin_page_title() ?></h5>
         <p class="card-text">Configuración del Calendario de Google.</p>
@@ -355,21 +392,23 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
         </div>
 
         <br>
+        <div class="id-key">
         <input type="hidden" required name="id_fondo" value="<?php echo $listaFonConf[0]['id_fondo']; ?>" placeholder="" id="id_fondo" requiere="">
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">Id Calendario</span>
-          <input type="text" class="form-control" id="id_cal" name="id_cal" value="<?php echo $listaFonConf[0]['id_cal']; ?>" placeholder="Introduzca Id del Calendario de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <span class="input-group-text" >Id Calendario</span>
+          <input type="text" class="form-control id-cal" id="id_cal" name="id_cal" value="<?php echo $listaFonConf[0]['id_cal']; ?>" placeholder="Introduzca Id del Calendario de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
           <span class="input-group-text"><i class="fa-solid fa-calendar-check"></i></span>
         </div>
-        <br>
+        
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">Api-Key</span>
-          <input type="text" class="form-control" id="api_key" name="api_key" value="<?php echo $listaFonConf[0]['api_key']; ?>" placeholder="Introduzca la Api-Key de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <span class="input-group-text" >Api-Key</span>
+          <input type="text" class="form-control api-key" id="api_key" name="api_key" value="<?php echo $listaFonConf[0]['api_key']; ?>" placeholder="Introduzca la Api-Key de Google" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
           <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
         </div>
-
+        </div>
+        <br>
 
 
         <div class="container text-center rounded" style="width: 100%; background-color: <?php echo $listaFonConf[0]['color_fondo'] ?>;">
@@ -414,9 +453,9 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
                     <option class="dropdown-item" value="0D">5%</option>
                   </select>
                   <div class="input-group mb-3 justify-content-center">
-                    <span class="input-group-text" style="color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>; background-color: rgba(255, 255, 255, 0.01);"> Color <b> Titulo</b></span>
+                    <span class="input-group-text" style="color: <?php echo $listaFonConf[0]['color_txt_tit']; ?>; background-color: rgba(255, 255, 255, 0.01);"> Col. <b>Titulo</b></span>
                     <div><input type="color" class="form-control form-control-color" id="color_txt_tit" name="color_txt_tit" value="<?php echo $listaFonConf[0]['color_txt_tit']; ?>" title="Color Texto Titulo" style="margin-right: 10px;" /></div>
-                    <span class="input-group-text" style="color: <?php echo $listaFonConf[0]['color_txt_des']; ?>; background-color: rgba(255, 255, 255, 0.01);"> Color <b> Descrip</b></span>
+                    <span class="input-group-text" style="color: <?php echo $listaFonConf[0]['color_txt_des']; ?>; background-color: rgba(255, 255, 255, 0.01);"> Col. <b>Descrip</b></span>
                     <div><input type="color" class="form-control form-control-color" id="color_txt_des" name="color_txt_des" value="<?php echo $listaFonConf[0]['color_txt_des']; ?>" title="Color Texto Descripcion" style="margin-left: 0;" /></div>
                   </div>
                 </div>
@@ -454,7 +493,8 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
 
         <br>
         <button type="submit" class="btn btn-primary" id="btnGuardarConf" name="btnGuardarConf"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-    </form>
+      </div> <!-- card-body -->
+     </form>
     <br>
     <div class="card-footer text-muted">
      Colocar Shortcode: <b>[eventos]</b>
@@ -585,12 +625,6 @@ if ($listaFonConf[0]['color_por_bot'] == 'FF') {
       </div>
     </div>
   </div>
-
-<script>
-    let id_cal = "<?php echo $listaFonConf[0]['id_cal']; ?>";
-    let api_key = "<?php echo $listaFonConf[0]['api_key']; ?>";
-    console.log('Si me veeeeeeeee');
-</script>
 
 
 </body>

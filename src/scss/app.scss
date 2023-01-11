@@ -2,13 +2,14 @@
 @use 'base';
 @use 'layout';
 
-@import 'base/normalize';
+//@import 'base/normalize';
 @import 'base/variables';
 @import 'base/mixins';
-@import 'base/globales';
-@import 'base/utilidades';
+//@import 'base/globales';
+//@import 'base/utilidades';
 @import 'base/botones';
 
 /** UI **/
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/eventos';

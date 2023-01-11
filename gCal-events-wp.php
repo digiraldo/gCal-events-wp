@@ -153,7 +153,7 @@ function guardarDatosJson(){
 	}
 	/*  */
 	$tConfig = json_encode($listaTextPredCal, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); //
-	file_put_contents(__DIR__.'../admin/build/json/lista_texto.json', $tConfig);
+	file_put_contents(__DIR__.'../admin/build/json/texto_config.json', $tConfig);
 
 
 	$querySwCal = "SELECT * FROM $switchTxtCal";
@@ -169,15 +169,14 @@ function guardarDatosJson(){
 // ================================== Encolar js y css en backend ==================================
 // ================================== Encolar js y css en backend ==================================
 
-function encolarBootstrapJSCal($hook){
-    //echo "<script>console.log('$hook')</script>";
-    if($hook != "gCal-events-wp/admin/config_eventos.php"){
+add_action ('admin_enqueue_scripts', 'cargar_archivo_js');
+function cargar_archivo_js ($hook) {
+	if($hook != "gCal-events-wp/admin/config_eventos.php"){
         return ;
     }
-    wp_enqueue_script('bootstrapJs',plugins_url('admin/bootstrap/js/bootstrap.min.js',__FILE__),array('jquery'));
-    wp_enqueue_script('calendario',plugins_url('admin/build/js/eventos.js',__FILE__),array('jquery')); // js propio
+wp_enqueue_script( 'calendario', plugin_dir_url( __FILE__ ) . 'admin/build/js/eventos.js', array(), '1.0.0', true );
+wp_enqueue_script( 'bootstrap', plugin_dir_url( __FILE__ ) . 'admin/bootstrap/js/bootstrap.min.js', array(), '1.0.0', true );
 }
-add_action('admin_enqueue_scripts','encolarBootstrapJSCal');
 
 function encolarBootstrapCSSCal($hook){
     if($hook != "gCal-events-wp/admin/config_eventos.php"){
@@ -194,7 +193,7 @@ add_action('admin_enqueue_scripts','encolarBootstrapCSSCal');
 
 add_action ('wp_enqueue_scripts', 'cargar_frontend_js');
 function cargar_frontend_js () {
-  wp_enqueue_script( 'gCal', plugin_dir_url( __FILE__ ) . 'admin/build/js/eventos.js', array('jquery'), '1.0.0', true );
+wp_enqueue_script( 'gCal', plugin_dir_url( __FILE__ ) . 'admin/build/js/eventos.js', array('jquery'), '1.0.0', true );
 }
 
 add_action ('wp_enqueue_scripts', 'cargar_frontend_css');
@@ -259,6 +258,7 @@ if (empty($listaFonConf)) {
 <script>
 	let id_cal = "<?php echo $listaFonConfCal[0]['id_cal']; ?>";
 	let api_key = "<?php echo $listaFonConfCal[0]['api_key']; ?>";
+	//console.log('estoy en el FOOTER: gCal-events-wop.php');
 </script>
 <script>
     const bgTxtColor = document.querySelector('.gCalFlow').parentNode;
@@ -272,3 +272,34 @@ if (empty($listaFonConf)) {
 } ,2);
 ?>
 
+
+<?php 
+add_action('admin_footer', function(){
+?>
+<?php 
+global $wpdb;
+$fondoConfCal = "{$wpdb->prefix}evento_fondo_conf";
+
+$queryFondoCal = "SELECT * FROM $fondoConfCal";
+$listaFonConfCal = $wpdb->get_results($queryFondoCal, ARRAY_A);
+if (empty($listaFonConfCal)) {
+  $listaFonConfCal = array();
+}
+
+$fondoConf = "{$wpdb->prefix}evento_fondo_conf";
+
+$queryFondo = "SELECT * FROM $fondoConf";
+$listaFonConf = $wpdb->get_results($queryFondo, ARRAY_A);
+if (empty($listaFonConf)) {
+  $listaFonConf = array();
+}
+
+?>
+<script>
+	let id_cal = "<?php echo $listaFonConfCal[0]['id_cal']; ?>";
+	let api_key = "<?php echo $listaFonConfCal[0]['api_key']; ?>";
+	//console.log('estoy en el FOOTER Admin: gCal-events-wop.php');
+</script>
+<?php
+} ,100);
+?>
